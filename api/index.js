@@ -16,10 +16,6 @@ app.get('/', (_, res) => res.send('API Kanban com Login funcionando!'));
 app.use('/auth', authRoutes);
 app.use('/cards', cardRoutes);
 
-await sequelize.sync(); // ou sync({ alter: true }) se necessário
-
-app.listen(3000, () => {
-  console.log('API Kanban com Login funcionando!');
-});
+await sequelize.sync();
 
 export default app;
