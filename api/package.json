@@ -3,10 +3,11 @@
   "version": "1.0.0",
   "type": "module",
   "scripts": {
-    "start": "node api/index.js",
-    "dev": "nodemon api/index.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
+  "start": "node api/index.js",
+  "dev": "nodemon api/index.js",
+  "sync-db": "node api/syncDatabase.js"
+}
+,
   "dependencies": {
     "bcryptjs": "^3.0.2",
     "cors": "^2.8.5",
