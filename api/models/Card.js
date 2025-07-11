@@ -5,12 +5,21 @@ import User from './User.js';
 const Card = sequelize.define('Card', {
   title: {
     type: DataTypes.STRING,
-    allowNull: false
+    allowNull: false,
+    validate: {
+      notEmpty: true
+    }
   },
-  description: DataTypes.STRING,
+  description: {
+    type: DataTypes.STRING,
+    defaultValue: ''
+  },
   status: {
     type: DataTypes.ENUM('todo', 'doing', 'done'),
-    defaultValue: 'todo'
+    defaultValue: 'todo',
+    validate: {
+      isIn: [['todo', 'doing', 'done']]
+    }
   },
   deleted: {
     type: DataTypes.BOOLEAN,
@@ -18,6 +27,6 @@ const Card = sequelize.define('Card', {
   }
 });
 
-Card.belongsTo(User); // Card.userId
+Card.belongsTo(User);
 
 export default Card;
