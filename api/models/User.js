@@ -2,12 +2,30 @@ import { DataTypes } from 'sequelize';
 import sequelize from '../config/db.js';
 
 const User = sequelize.define('User', {
-  name: DataTypes.STRING,
+  name: {
+    type: DataTypes.STRING,
+    allowNull: false,
+    validate: {
+      notEmpty: true
+    }
+  },
   email: {
     type: DataTypes.STRING,
-    unique: true
+    unique: true,
+    allowNull: false,
+    validate: {
+      isEmail: true,
+      notEmpty: true
+    }
   },
-  password: DataTypes.STRING
+  password: {
+    type: DataTypes.STRING,
+    allowNull: false,
+    validate: {
+      notEmpty: true,
+      len: [6, 100]
+    }
+  }
 });
 
 export default User;
