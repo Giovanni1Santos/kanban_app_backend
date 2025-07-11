@@ -1,9 +1,14 @@
-app.get('/sync-database', async (req, res) => {
+import sequelize from './config/db.js';
+import './models/User.js';
+import './models/Card.js';
+
+(async () => {
   try {
     await sequelize.sync({ alter: true });
-    res.send('Banco sincronizado com sucesso!');
+    console.log('✅ Banco sincronizado com sucesso!');
+    process.exit(0);
   } catch (err) {
-    console.error(err);
-    res.status(500).send('Erro ao sincronizar o banco');
+    console.error('❌ Erro ao sincronizar o banco:', err);
+    process.exit(1);
   }
-});
+})();

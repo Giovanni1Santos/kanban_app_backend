@@ -8,12 +8,11 @@ import {
   permanentlyDeleteCard,
   restoreCard
 } from '../controllers/cardController.js';
-
 import { authenticateToken } from '../auth/authMiddleware.js';
 
 const router = express.Router();
 
-router.use(authenticateToken); // Protege todas as rotas abaixo
+router.use(authenticateToken);
 
 router.get('/', getAllCards);
 router.get('/trash', getDeletedCards);
